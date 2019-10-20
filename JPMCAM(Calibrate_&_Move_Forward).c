@@ -171,7 +171,7 @@ void initialize()
 		delay_ms(20);
 	}*
 	*/
-	counter = 6;
+	counter = 2;
 	while(counter-->0)
 	{
 		if(counter%2==0)
@@ -181,6 +181,11 @@ void initialize()
 		
 		calibrate_line_sensors(IR_EMITTERS_ON);
 		delay_ms(20);
+
+		if(counter%2==0)
+			set_motors(-40,40);
+		else
+			set_motors(40,-40);
 	}
 	set_motors(0,0);
 

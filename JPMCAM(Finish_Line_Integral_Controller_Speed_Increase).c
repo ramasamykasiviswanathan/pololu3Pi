@@ -162,7 +162,7 @@ void initialize()
 		delay_ms(20);
 	}*
 	*/
-	counter = 6;
+	counter = 2;
 	while(counter-->0)
 	{
 		if(counter%2==0)
@@ -171,6 +171,11 @@ void initialize()
 			set_motors(-40,40);
 		
 		calibrate_line_sensors(IR_EMITTERS_ON);
+
+		if(counter%2==0)
+			set_motors(-40,40);
+		else
+			set_motors(40,-40);
 		delay_ms(20);
 	}
 	set_motors(0,0);
@@ -269,6 +274,7 @@ int main()
 
 	// set up the 3pi
 	initialize();
+	drivingAlgorithm();
 }
 
 // Local Variables: **
