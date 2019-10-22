@@ -88,7 +88,8 @@ void loop()
   lcd.print(position);
   int base_position = 2000;
   int error = base_position - position;
-  int base_speed = 40;
+  int base_speed = 100;
+  
   error = error * 0.05; // error is proportional
   int Lspd = base_speed-error;
   int Rspd = base_speed+error;
