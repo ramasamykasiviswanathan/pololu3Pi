@@ -280,7 +280,7 @@ void loop()
   OrangutanLCD::gotoXY(0, 1);
   int base_position = 2000;
   int error = base_position - position;
-  error = error * 0.066; // error is proportional
+  error = error * 0.04; // error is proportional
 //  error = error * 0.05; // error is proportional
   OrangutanLCD::print(error);
   int Lspd = base_speed-error;
@@ -290,8 +290,8 @@ void loop()
   int prev_error = error;  
   position = robot.readLine(sensors, IR_EMITTERS_ON);
   error = base_position - position; 
-//  error = error * 0.05;
-  error = error * 0.2;
+  error = error * 0.05  ;
+//  error = error * 0.2;
   
   int derivative = prev_error - error;
   Lspd = base_speed-error-derivative;
