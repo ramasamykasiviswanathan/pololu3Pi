@@ -152,16 +152,15 @@ void setup()
   while(counter --> 0)
   {
     if(counter%2==0)
-      OrangutanMotors::setSpeeds(-40, 40);
+      OrangutanMotors::setSpeeds(-80, 80);
      else
-      OrangutanMotors::setSpeeds(40, -40);
+      OrangutanMotors::setSpeeds(80, -80);
      robot.calibrateLineSensors(IR_EMITTERS_ON);
      delayfunction();
-     
      if(counter%2==0)
-      OrangutanMotors::setSpeeds(40, -40);
+      OrangutanMotors::setSpeeds(80, -80);
      else
-      OrangutanMotors::setSpeeds(-40, 40);
+      OrangutanMotors::setSpeeds(-80, 80);
 
     OrangutanLCD::clear();
     OrangutanLCD::print("Count");
@@ -268,17 +267,18 @@ void drivingAlgorithm(){
 
 // The main function.  This function is repeatedly called by
 // the Arduino framework.
+unsigned int speedup = 2;
 void loop()
 {
   //drivingAlgorithm();
 
    unsigned int position = robot.readLine(sensors, IR_EMITTERS_ON);
+   int base_speed = 100;
   
   OrangutanLCD::clear();
   OrangutanLCD::print(position);
   int base_position = 2000;
   int error = base_position - position;
-  int base_speed = 40;
   error = error * 0.05; // error is proportional
   int Lspd = base_speed-error;
   int Rspd = base_speed+error;
