@@ -35,7 +35,7 @@ long integral = 0;
 // go into program space.
 const char welcome_line1[] PROGMEM = " Pololu";
 const char welcome_line2[] PROGMEM = "3\xf7 Robot";
-const char demo_name_line1[] PROGMEM = "JPMC-AM";
+const char demo_name_line1[] PROGMEM = "JPMC-AM_1";
 const char demo_name_line2[] PROGMEM = "follower";
 
 // A couple of simple tunes, stored in program space.
@@ -273,13 +273,16 @@ void loop()
   //drivingAlgorithm();
 
    unsigned int position = robot.readLine(sensors, IR_EMITTERS_ON);
-   int base_speed = 100;
+   int base_speed = 80;
   
   OrangutanLCD::clear();
   OrangutanLCD::print(position);
+  OrangutanLCD::gotoXY(0, 1);
   int base_position = 2000;
   int error = base_position - position;
-  error = error * 0.05; // error is proportional
+  error = error * 0.066; // error is proportional
+//  error = error * 0.05; // error is proportional
+  OrangutanLCD::print(error);
   int Lspd = base_speed-error;
   int Rspd = base_speed+error;
   OrangutanMotors::setSpeeds(Lspd, Rspd);
@@ -287,7 +290,8 @@ void loop()
   int prev_error = error;  
   position = robot.readLine(sensors, IR_EMITTERS_ON);
   error = base_position - position; 
-  error = error * 0.05;
+//  error = error * 0.05;
+  error = error * 0.066;
   int derivative = prev_error - error;
   Lspd = base_speed-error-derivative;
   Rspd = base_speed+error+derivative;
