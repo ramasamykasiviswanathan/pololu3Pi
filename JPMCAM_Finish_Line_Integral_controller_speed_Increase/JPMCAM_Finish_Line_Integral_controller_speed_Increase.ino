@@ -292,6 +292,7 @@ void loop()
   error = base_position - position; 
 //  error = error * 0.05;
   error = error * 0.2;
+  
   int derivative = prev_error - error;
   Lspd = base_speed-error-derivative;
   Rspd = base_speed+error+derivative;
