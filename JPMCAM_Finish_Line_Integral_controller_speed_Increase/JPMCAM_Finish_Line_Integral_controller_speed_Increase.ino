@@ -291,7 +291,7 @@ void loop()
   position = robot.readLine(sensors, IR_EMITTERS_ON);
   error = base_position - position; 
 //  error = error * 0.05;
-  error = error * 0.066;
+  error = error * 0.2;
   int derivative = prev_error - error;
   Lspd = base_speed-error-derivative;
   Rspd = base_speed+error+derivative;
